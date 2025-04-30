@@ -1,0 +1,24 @@
+<?xml version='1.0' encoding='utf-8'?>
+<rss version='2.0' xmlns:g="http://base.google.com/ns/1.0">
+    <channel>
+        <item>
+            <description>Description</description>
+            <g:id>4530607</g:id>
+            <g:image_link>https://cdn.e5mode.be/products/webshop/base/blauwe-jeans-skinny-fit-angels-4530607.jpg</g:image_link>
+            <g:price>89.99</g:price>
+            <g:sale_price>89.99</g:sale_price>
+            <link>https://www.e5mode.be/nl/angels-blauwe-jeans-skinny-fit-3251230-4530607?channable=00da03696400323833373837b4</link>
+            <title>Blauwe jeans - skinny fit</title>
+        </item>
+        <item>
+            <description>Description2</description>
+            <g:id>4532526</g:id>
+            <g:image_link>https://cdn.e5mode.be/products/webshop/base/donkerblauwe-denim-met-slangenprint-straight-fit-angels-4532526.jpg</g:image_link>
+            <g:price>0.00</g:price>
+            <g:sale_price>49.98</g:sale_price>
+            <link>https://www.e5mode.be/nl/angels-donkerblauwe-denim-met-slangenprint-straight-fit-253340030-4532526?channable=00da03696400323833383833f0</link>
+            <title>Donkerblauwe denim met slangenprint - straight fit</title>
+        </item>
+
+    </channel>
+</rss>

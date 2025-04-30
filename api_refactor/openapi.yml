@@ -1,0 +1,263 @@
+openapi: 3.0.0
+info:
+  title: API V2
+  version: 1.0.0
+paths:
+  /api/v2/questions:
+    get:
+      summary: Get a list of questions
+      parameters:
+        - name: tag
+          in: query
+          required: false
+          schema:
+            type: string
+          description: Filter questions by tag
+      responses:
+        '200':
+          description: A list of questions
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Question'
+    post:
+      summary: Create a new question
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/QuestionInput'
+      responses:
+        '201':
+          description: Question created
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Question'
+        '422':
+          description: Unprocessable entity
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+  /api/v2/questions/{id}:
+    get:
+      summary: Get a question by ID
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: integer
+      responses:
+        '200':
+          description: A question
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Question'
+        '404':
+          description: Question not found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+    put:
+      summary: Update a question by ID
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: integer
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/QuestionInput'
+      responses:
+        '200':
+          description: Question updated
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Question'
+        '404':
+          description: Question not found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '422':
+          description: Unprocessable entity
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+    delete:
+      summary: Delete a question by ID
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: integer
+      responses:
+        '204':
+          description: No content
+        '404':
+          description: Question not found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+  /api/v2/answers:
+    post:
+      summary: Create a new answer
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/AnswerInput'
+      responses:
+        '201':
+          description: Answer created
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Answer'
+        '422':
+          description: Unprocessable entity
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+  /api/v2/answers/{id}:
+    put:
+      summary: Update an answer by ID
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: integer
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/AnswerInput'
+      responses:
+        '200':
+          description: Answer updated
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Answer'
+        '404':
+          description: Answer not found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '422':
+          description: Unprocessable entity
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+    delete:
+      summary: Delete an answer by ID
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: integer
+      responses:
+        '204':
+          description: No content
+        '404':
+          description: Answer not found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+components:
+  schemas:
+    Question:
+      type: object
+      properties:
+        id:
+          type: integer
+        text:
+          type: string
+        rating:
+          type: number
+        tags:
+          type: array
+          items:
+            type: string
+        average_rating:
+          type: number
+        created_at:
+          type: string
+          format: date-time
+        updated_at:
+          type: string
+          format: date-time
+    QuestionInput:
+      type: object
+      properties:
+        text:
+          type: string
+        rating:
+          type: number
+        tags:
+          type: array
+          items:
+            type: string
+        ratings:
+          type: array
+          items:
+            type: integer
+      required:
+        - text
+    Answer:
+      type: object
+      properties:
+        id:
+          type: integer
+        text:
+          type: string
+        rating:
+          type: number
+        created_at:
+          type: string
+          format: date-time
+        updated_at:
+          type: string
+          format: date-time
+    AnswerInput:
+      type: object
+      properties:
+        text:
+          type: string
+        rating:
+          type: number
+        ratings:
+          type: array
+          items:
+            type: integer
+      required:
+        - text
+    Error:
+      type: object
+      properties:
+        detail:
+          type: string

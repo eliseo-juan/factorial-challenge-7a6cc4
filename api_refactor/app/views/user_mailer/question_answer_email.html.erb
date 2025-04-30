@@ -1,0 +1,7 @@
+<% n = @answer.user.title ? "@answer.user.username (#{@answer.user.title})" : @answer.user.username %>
+
+<p><%= n %> has answered your question, "<%= @answer.question.text%>":</p> <br>
+
+<p><%= @answer.text %></p>
+
+<p>Have an ok day!</p>

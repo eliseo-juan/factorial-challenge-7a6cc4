@@ -1,0 +1,10 @@
+#!/usr/bin/env ruby
+# frozen_string_literal: true
+
+$LOAD_PATH.unshift File.expand_path("#{File.dirname(__FILE__)}/../lib")
+require 'shop_checkout'
+require 'app'
+require 'data_reader'
+
+data_reader = DataReader.new
+App.new(data_reader:).run
